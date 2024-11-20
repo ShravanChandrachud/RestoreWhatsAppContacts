@@ -23,12 +23,11 @@ client.on('ready', () => {
         let csv = "Name,Phone Number\n";
         contacts.forEach((contact) => {
             if (!contact.isBusiness) {
-                console.log("Contact = ", contact);
                 const name = contact.name ? contact.name : 'Unknown Name';
                 const phoneNumber = contact.number ? contact.number : 'Unknown Number';
 
                 // Exclude business contacts
-                if (name !== 'Unknown Name' && phoneNumber !== 'Unknown Number') {
+                if (name !== 'Unknown Name' && phoneNumber !== 'Unknown Number' && phoneNumber.length <= 12) {
                     csv += `${name},${phoneNumber}\n`;
                 }
             }
