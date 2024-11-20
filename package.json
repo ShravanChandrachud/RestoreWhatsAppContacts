@@ -1,7 +1,19 @@
 {
+  "name": "whatsapp-contacts-extractor",
+  "version": "1.0.0",
+  "main": "contactRetrieval.js",
   "dependencies": {
     "puppeteer": "^23.8.0",
     "qrcode-terminal": "^0.12.0",
     "whatsapp-web.js": "^1.26.0"
+  },
+  "bin": "contactRetrieval.js",
+  "pkg": {
+    "targets": [
+      "node18-win-x64"
+    ],
+    "assets": [
+      "node_modules/puppeteer/.local-chromium/**/*"
+    ]
   }
 }
