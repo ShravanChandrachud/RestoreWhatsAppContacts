@@ -9,3 +9,8 @@ to run the code (after going into the project directory)
 Then scan the QR code to log in using phone
 
 then you should get your contacts back
+
+
+Now Added an exe 
+
+***(Learn to code)***
