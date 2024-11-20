@@ -9,7 +9,6 @@ const client = new Client({
 
 // Generate QR code when required
 client.on('qr', (qr) => {
-    // Generate and scan this code with your phone
     console.log('QR RECEIVED', qr);
     qrcode.generate(qr, { small: true });
     console.log('Scan the QR code displayed above');
@@ -19,9 +18,7 @@ client.on('qr', (qr) => {
 client.on('ready', () => {
     console.log('Client is ready!');
 
-    // Fetch all contacts
     client.getContacts().then((contacts) => {
-        // Create a map to store the latest number for each name
         const contactMap = new Map();
 
         contacts.forEach((contact) => {
@@ -29,7 +26,6 @@ client.on('ready', () => {
                 const name = contact.name ? contact.name : 'Unknown Name';
                 const phoneNumber = contact.number ? contact.number : 'Unknown Number';
 
-                // Only process valid names and phone numbers
                 if (name !== 'Unknown Name' && phoneNumber !== 'Unknown Number') {
                     // Overwrite previous entry with the latest one
                     contactMap.set(name, phoneNumber);
@@ -46,12 +42,15 @@ client.on('ready', () => {
         // Save to CSV file
         fs.writeFileSync("contacts.csv", csv);
         console.log("Contacts saved to contacts.csv");
+
+        process.exit(0);
     });
 });
 
 // Handle errors
 client.on('error', (err) => {
     console.error('Error:', err);
+    process.exit(1);
 });
 
 // Start the client
